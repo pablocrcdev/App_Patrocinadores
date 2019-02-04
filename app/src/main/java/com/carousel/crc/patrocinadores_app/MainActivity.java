@@ -12,14 +12,15 @@ public class MainActivity extends AppCompatActivity {
     private int[] imagesUrls= {
             R.drawable.banco_nacional,
             R.drawable.carnes_castillo,
-            R.drawable.cdr,
+            //R.drawable.cdr,
             R.drawable.crc_coding,
             R.drawable.decavisa,
             R.drawable.innoprint,
             R.drawable.materiales_san_miguel,
             R.drawable.pinturas_prosol,
             R.drawable.pro_sport,
-            R.drawable.prodeo,
+            //R.drawable.prodeo,
+            R.drawable.crazy_pizza,
             R.drawable.spc,
             R.drawable.tdmas,
             R.drawable.transportes,
@@ -34,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this,imagesUrls);
         viewPager.setAdapter(adapter);
+        hideSystemUI();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new SliderTimer(), 4000, 6000);
+
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) hideSystemUI();
+    }
+
+    private void hideSystemUI() {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -41,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new SliderTimer(), 4000, 6000);
-
     }
 
     private class SliderTimer extends TimerTask {
