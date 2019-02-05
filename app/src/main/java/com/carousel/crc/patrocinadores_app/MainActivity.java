@@ -3,6 +3,9 @@ package com.carousel.crc.patrocinadores_app;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.Timer;
@@ -73,5 +76,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater vinflater = getMenuInflater();
+        vinflater.inflate(R.menu.menu_items, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.full_screen:
+                hideSystemUI();
+                break;
+        }
+        return true;
     }
 }
